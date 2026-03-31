@@ -4,9 +4,10 @@ import './styles.css';
 /* ══════════════════════════════════════════
    API CONFIG — proxied through Vite
 ══════════════════════════════════════════ */
-const PA = '/api/patients';
-const AA = '/api/appointments';
-const BA = '/api/billings';
+const BASE_URL = import.meta.env.VITE_GATEWAY_URL || '';
+const PA = `${BASE_URL}/api/patients`;
+const AA = `${BASE_URL}/api/appointments`;
+const BA = `${BASE_URL}/api/billings`;
 
 /* ══════════════════════════════════════════
    HTTP HELPER
@@ -1048,7 +1049,7 @@ export default function App() {
           <div className="topbar-title">{pageTitle[page]}</div>
           <div className="topbar-pills">
             <span className="tpill tpill-teal"><span className="live-dot" />Live</span>
-            <span className="tpill tpill-amber">localhost:4173</span>
+            <span className="tpill tpill-amber">{BASE_URL.replace(/^https?:\/\//, '') || 'localhost:4173'}</span>
           </div>
         </div>
 

@@ -4,23 +4,17 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   server: {
-    port: 4173,
+    port: 5173,
     proxy: {
-      '/api/patients': {
-        target: 'http://localhost:8081',
+      // Backend request එක '/api' වලින් පටන් ගන්නවා නම් මේක වැඩ කරනවා
+      '/api': {
+        target: 'http://35.187.225.225',
         changeOrigin: true,
+        secure: false,
       },
-      '/api/appointments': {
-        target: 'http://localhost:8082',
-        changeOrigin: true,
-      },
-      '/api/billings': {
-        target: 'http://localhost:8083',
-        changeOrigin: true,
-      },
-    }
+    },
   },
   preview: {
-    port: 4173,
+    port: 5173,
   }
 });
